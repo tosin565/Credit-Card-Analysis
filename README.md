@@ -18,10 +18,6 @@ This project aims to provide insight into the sales performance of a Credit Card
 - Top 5 states by Revenue
 - Bottom 5 states by Revenue
 - Correlation Coefficient Between Income and Revenue
-## SQL Quey
-- Query <a href="https://github.com/tosin565/Global-Super-Store/blob/main/Global%20Super%20Store.sql">Sql Query</a>
-
-
 ## Screenshot
-- <a href="https://github.com/tosin565/Global-Super-Store/blob/main/Global%20STore.PNG">Screenshot</a>
-- <a href="https://github.com/tosin565/Global-Super-Store/blob/main/Global.PNG">Screenshot</a>
+- <a href="https://github.com/tosin565/Credit-Card-Analysis/blob/main/credit%20cc.PNG">Screenshot</a>
+- <a href="https://github.com/tosin565/Credit-Card-Analysis/blob/main/credit.PNG">Screenshot</a>
