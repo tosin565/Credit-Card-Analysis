@@ -15,6 +15,17 @@ SELECT CAST(CAST(SUM(Total_trans_amt) AS DECIMAL(10,2)) / CAST(COUNT(Total_trans
 AS DECIMAL(10,2)) AS DECIMAL(10,2))  Avg_Trans_Amt
 FROM credit_card
 
+--Avg Total Transaction Vol
+SELECT CAST(CAST(SUM(Total_Trans_Vol) AS DECIMAL(10,2)) / CAST(COUNT(Total_trans_amt)
+AS DECIMAL(10,2)) AS DECIMAL(10,2))  Avg_Trans_Amt
+FROM credit_card
+
+--Customers with more than Avg Total Transatcion Vol
+SELECT Client_Num, Total_Trans_Vol
+FROM credit_card
+WHERE Total_Trans_Vol > (SELECT AVG(Total_Trans_Vol)
+FROM credit_card)
+
 -- Customers with more than Average Transaction Amount
 WITH AVGTRANSAMT AS
 ( SELECT AVG(Total_trans_amt) Avg_Trans_Amt
@@ -34,7 +45,6 @@ SELECT c.Client_Num, c.income
 FROM cc_customer c, AVGINCOME av
 WHERE income > Avg_income
 ORDER BY income
-
 
 --Quaterly Revenue Trend in percent and Total Revenue
 SELECT Qtr, Round(SUM(Annual_fees + total_trans_Amt + Interest_earned),2) Total_Revenue,
@@ -113,14 +123,6 @@ ELSE 'Very Satisfied'
 END
 ORDER BY Credit_Limit DESC
 
---Avg Transaction Amt & Vol Per Day
-SELECT DAY(Week_Start_Date) Daily,
-AVG(Total_Trans_Amt) Avg_Trans_Amt,
-AVG(Total_Trans_Vol) Avg_Trans_Vol
-FROM credit_card
-GROUP BY DAY(Week_Start_Date)
-ORDER BY Daily
-
 --Revnue and Income by Age category
 SELECT
 	CASE 
@@ -193,37 +195,3 @@ IntermediateValues AS (
 SELECT 
     Numerator / (Denominator_Income * Denominator_Revenue) AS Correlation_Coefficient
 FROM IntermediateValues;
-
-
-SELECT Client_Num, Total_Trans_Vol
-FROM credit_card
-WHERE Total_Trans_Vol > (SELECT AVG(Total_Trans_Vol)
-FROM credit_card)
-
-SELECT Client_Num, AVG(Total_Trans_Vol)
-FROM credit_card
-GROUP BY Client_Num
-HAVING > AVG(Total_Trans_Vol)
-
-With Customername(state_cd, Exp_type, income)
-as
-(SELECT Exp_type
-From credit_card
-)
-SELECT state_cd, Exp_type, income
-FROM credit_card CR
-JOIN Customername cc
-ON cr.Client_Num = cc.Client_Num
-
-WITH Customername AS 
-(
-    SELECT state_cd, Exp_type, income
-    FROM credit_card
-)
-SELECT CR.state_cd, CR.Exp_type, CR.income
-FROM credit_card CR
-JOIN Customername cc
-ON CR.Client_Num = cc.Client_Num;
-
-
-
