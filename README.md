@@ -1,6 +1,6 @@
 # Credi Card Analysis (Using SQL, DAX and Power Bi)
 ## Project Overview
-This project aims to provide insight into the sales performance of a Credit Card company for a year. By analyzing various aspect of the sales data. I identify trends, pattern and Other insight.
+This project aims to provide insight into the performance of a Credit Card company for a year. By analyzing various aspect of the sales data. I identify trends, pattern and Other insight.
 ## Problem statement
 - Total Revenue
 - Avg Total Transaction Amount.
